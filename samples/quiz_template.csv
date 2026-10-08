@@ -1,0 +1,29 @@
+quiz_title,quiz_description,time_limit_minutes,category,difficulty,,,,
+General Knowledge Quiz,A quiz covering various general knowledge topics,10,General,Easy,,,,
+,,,,,,,,
+question_text,option1,option2,option3,option4,correct_answer,points,image_url,explanation
+What is the capital of France?,London,Paris,Berlin,Madrid,Paris,1,,Paris is the capital and largest city of France
+Which planet is known as the Red Planet?,Earth,Mars,Venus,Jupiter,Mars,1,,Mars appears red due to iron oxide on its surface
+What is 2+2?,1,2,3,4,4,1,,The sum of 2 and 2 is 4
+Who painted the Mona Lisa?,Vincent van Gogh,Pablo Picasso,Leonardo da Vinci,Michelangelo,Leonardo da Vinci,1,,The Mona Lisa was painted by Leonardo da Vinci in the early 16th century
+What is the largest ocean on Earth?,Atlantic Ocean,Indian Ocean,Arctic Ocean,Pacific Ocean,Pacific Ocean,1,,The Pacific Ocean is the largest and deepest of the world's oceans
+Which element has the chemical symbol 'O'?,Gold,Oxygen,Silver,Iron,Oxygen,1,,Oxygen is a chemical element with symbol O and atomic number 8
+In which year did World War II end?,1940,1945,1939,1950,1945,1,,World War II ended in 1945 with the surrender of the Axis powers
+What is the hardest natural substance on Earth?,Gold,Iron,Diamond,Platinum,Diamond,1,,Diamond is a solid form of the element carbon and is the hardest known natural material
+Who is known as the Father of Computers?,Alan Turing,Charles Babbage,Bill Gates,Steve Jobs,Charles Babbage,1,,Charles Babbage originated the concept of a digital programmable computer
+How many continents are there on Earth?,5,6,7,8,7,1,,The continents are Asia Africa North America South America Antarctica Europe and Australia
+What is the largest mammal in the world?,African Elephant,Blue Whale,Giraffe,Hippopotamus,Blue Whale,1,,The Blue Whale is the largest animal known to have ever lived
+Which country invented tea?,India,Japan,United Kingdom,China,China,1,,Tea originated in Southwest China during the Shang dynasty
+Who discovered Penicillin?,Marie Curie,Alexander Fleming,Louis Pasteur,Thomas Edison,Alexander Fleming,1,,Alexander Fleming discovered the world's first broadly effective antibiotic substance in 1928
+What is the currency of Japan?,Yuan,Won,Dollar,Yen,Yen,1,,The Yen is the official currency of Japan
+How many bones are in the adult human body?,206,205,215,300,206,1,,An adult human skeleton typically consists of 206 bones
+Which organ pumps blood throughout the human body?,Brain,Lungs,Heart,Liver,Heart,1,,The heart is a muscle that pumps blood through the circulatory system
+What is the square root of 64?,6,7,8,9,8,1,,8 multiplied by 8 equals 64
+Who wrote the play 'Romeo and Juliet'?,Charles Dickens,William Shakespeare,Mark Twain,Jane Austen,William Shakespeare,1,,William Shakespeare wrote the tragedy early in his career
+Which gas do plants absorb from the atmosphere?,Oxygen,Nitrogen,Carbon Dioxide,Hydrogen,Carbon Dioxide,1,,Plants absorb Carbon Dioxide for photosynthesis
+What is the fastest land animal?,Lion,Cheetah,Horse,Leopard,Cheetah,1,, The cheetah can reach speeds of up to 112 km/h (70 mph)
+Which planet has the most rings?,Jupiter,Saturn,Uranus,Neptune,Saturn,1,,Saturn has the most extensive ring system of any planet in the Solar System
+What is the boiling point of water at sea level?,50°C,90°C,100°C,120°C,100°C,1,,Water boils at 100 degrees Celsius at standard sea level pressure
+Which instrument is used to measure temperature?,Barometer,Thermometer,Speedometer,Compass,Thermometer,1,,A thermometer is a device that measures temperature or temperature gradient
+What is the smallest country in the world?,Monaco,Vatican City,San Marino,Liechtenstein,Vatican City,1,,Vatican City is an independent city-state enclaved within Rome
+Which vitamin is produced when a person is exposed to sunlight?,Vitamin A,Vitamin B,Vitamin C,Vitamin D,Vitamin D,1,,Vitamin D is produced in the skin in response to sunlight

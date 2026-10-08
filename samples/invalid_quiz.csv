@@ -1,0 +1,6 @@
+quiz_title,quiz_description,time_limit_minutes,category,difficulty
+Invalid Quiz,Missing columns,10,general,easy
+
+question_text,option1,option2,option3,correct_answer
+Where is option 4?,Here,There,Nowhere,Here
+Missing Correct Answer,A,B,C,D,,1

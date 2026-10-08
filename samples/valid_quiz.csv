@@ -1,0 +1,6 @@
+quiz_title,quiz_description,time_limit_minutes,category,difficulty
+Valid Test Quiz,This is a valid csv import,15,science,easy
+
+question_text,option1,option2,option3,option4,correct_answer,points,image_url,explanation
+What is H2O?,Water,Gold,Silver,Iron,Water,1,,Water is H2O
+Speed of light?,300k km/s,100k km/s,500k km/s,Unknown,300k km/s,2,,Approx 299792 km/s

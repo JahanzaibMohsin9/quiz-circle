@@ -1,0 +1,123 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- HELPER FUNCTIONS ---
+    
+    // Checks if the user is signed in
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Checks if the user is the owner of the data
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // CRITICAL FIX: Check user role from Firestore instead of hardcoded UID
+    // This is more secure and scalable for production use
+    function isAdmin() {
+      return isSignedIn() && 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+    }
+
+    // --- RULES ---
+
+    // Users: All authenticated users can read (for leaderboard), only owner can write
+    // This allows the leaderboard to display user names
+    match /users/{userId} {
+      allow read: if isSignedIn(); // Changed: Allow all authenticated users to read profiles
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow update, delete: if isOwner(userId);
+    }
+    
+    // Quizzes: Everyone reads, only Admins write
+    match /quizzes/{quizId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+    
+    // Questions: Nested under quizzes
+    match /quizzes/{quizId}/questions/{questionId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+    
+    // Submissions: All authenticated users can read (for leaderboard), only owner can write
+    match /submissions/{submissionId} {
+      // 1. Allow Read: All authenticated users can read submissions (needed for leaderboard)
+      //    This allows students to see leaderboard data without exposing sensitive information
+      allow read: if isSignedIn();
+      
+      // 2. Allow Create: If the NEW data has my ID AND data is valid
+      allow create: if isSignedIn() 
+                    && request.resource.data.userId == request.auth.uid
+                    && request.resource.data.percentage >= 0 
+                    && request.resource.data.percentage <= 100
+                    && request.resource.data.score >= 0
+                    && request.resource.data.timeTakenSeconds >= 0;
+      
+      // 3. Allow Update: Prevent modification of critical fields (score, percentage, answers, timeTakenSeconds)
+      // Users can ONLY update non-critical metadata fields if needed
+      allow update: if isSignedIn() 
+                    && resource.data.userId == request.auth.uid
+                    && request.resource.data.userId == request.auth.uid
+                    && request.resource.data.score == resource.data.score
+                    && request.resource.data.percentage == resource.data.percentage
+                    && request.resource.data.answers == resource.data.answers
+                    && request.resource.data.timeTakenSeconds == resource.data.timeTakenSeconds;
+      
+      // 4. Allow Delete: Only admins can delete submissions
+      allow delete: if isAdmin();
+    }
+    
+    // Quiz Attempts: Users can read/write their own attempts
+    match /quiz_attempts/{attemptId} {
+      // Users can read their own attempts
+      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
+      
+      // Users can create attempts with their own userId
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      
+      // Users can update their own attempts
+      allow update: if isSignedIn() 
+                    && resource.data.userId == request.auth.uid
+                    && request.resource.data.userId == request.auth.uid;
+      
+      // Only admins can delete attempts
+      allow delete: if isAdmin();
+    }
+    
+    // Leaderboard: Everyone reads, only Admin updates
+    match /leaderboard/{leaderboardId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+    
+    // Announcements: Everyone reads, only Admins write
+    match /announcements/{announcementId} {
+      // All authenticated users can read announcements
+      allow read: if isSignedIn();
+      
+      // Only admins can create, update, or delete announcements
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Notifications: Users can only access their own notifications
+    match /notifications/{userId}/userNotifications/{notificationId} {
+      // Users can read their own notifications
+      allow read: if isSignedIn() && request.auth.uid == userId;
+      
+      // Users can update their own notifications (mark as read)
+      allow update: if isSignedIn() && request.auth.uid == userId;
+      
+      // Users can delete their own notifications
+      allow delete: if isSignedIn() && request.auth.uid == userId;
+      
+      // Admins and authenticated users can create notifications
+      // (Needed for system to create notifications for users)
+      allow create: if isSignedIn();
+    }
+  }
+}
